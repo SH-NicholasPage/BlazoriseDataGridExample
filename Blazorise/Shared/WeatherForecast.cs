@@ -1,4 +1,4 @@
-namespace SQLiteAndBlazorise.Shared
+namespace Blazorise.Shared
 {
     public class WeatherForecast
     {

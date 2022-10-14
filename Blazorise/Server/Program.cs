@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.ResponseCompression;
 
-namespace SQLiteAndBlazorise
+namespace Blazorise
 {
     public class Program
     {

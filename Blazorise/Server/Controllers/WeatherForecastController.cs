@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using SQLiteAndBlazorise.Shared;
+using Blazorise.Shared;
 
-namespace SQLiteAndBlazorise.Server.Controllers
+namespace Blazorise.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]

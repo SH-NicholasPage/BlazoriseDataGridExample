@@ -3,7 +3,7 @@ using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using SQLiteAndBlazorise.Client;
+using Blazorise.Client;
 
 namespace SQLiteAndBlazorise.Client
 {
