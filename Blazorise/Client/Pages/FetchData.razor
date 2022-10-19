@@ -1,5 +1,6 @@
 ﻿@page "/fetchdata"
 @using Blazorise.Shared
+@using System.Text.Json
 @inject HttpClient Http
 
 <PageTitle>Weather forecast</PageTitle>
@@ -28,7 +29,7 @@ else
     </Field>
 
     <DataGrid TItem="WeatherForecast" Data="@forecasts" @bind-SelectedRow="@selectedForecast" Responsive Editable ShowPager CommandMode="DataGridCommandMode.ButtonRow"
-          EditMode="editMode" RowInserting="@DoNewRowPrep" RowInserted="@OnRowInserted">
+          EditMode="editMode" RowInserting="@DoNewRowPrep" RowInserted="@OnRowInserted" RowRemoving="@OnRowRemoving">
         <DataGridColumns>
             <DataGridCommandColumn NewCommandAllowed="false" EditCommandAllowed="false" DeleteCommandAllowed="false">
                 <SaveCommandTemplate>
@@ -71,5 +72,11 @@ else
     private async void OnRowInserted(SavedRowItem<WeatherForecast, Dictionary<string, object>> e)
     {
         HttpResponseMessage response = await Http.PostAsJsonAsync("WeatherForecast", e.Item);
+    }
+
+    private async void OnRowRemoving(CancellableRowChange<WeatherForecast> itemBeingRemoved)
+    {
+        int temp = forecasts!.IndexOf(itemBeingRemoved.Item);
+        await Http.DeleteAsync("WeatherForecast?item=" + temp);
     }
 }

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Blazorise.Shared;
+using System.Text.Json;
 
 namespace Blazorise.Server.Controllers
 {
@@ -42,6 +43,12 @@ namespace Blazorise.Server.Controllers
         public void Post(WeatherForecast forecast)
         {
             Forecasts.Add(forecast);
+        }
+
+        [HttpDelete]
+        public void Delete(String item)
+        {
+            Forecasts.RemoveAt(Convert.ToInt32(item));
         }
     }
 }
