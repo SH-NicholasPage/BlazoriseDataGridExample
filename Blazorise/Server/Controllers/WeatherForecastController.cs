@@ -39,6 +39,13 @@ namespace Blazorise.Server.Controllers
             return Forecasts;
         }
 
+        [HttpPut]
+        public void Put(Tuple<Int32, WeatherForecast> putStuff)
+        {
+            Forecasts.RemoveAt(putStuff.Item1);
+            Forecasts.Insert(putStuff.Item1, putStuff.Item2);
+        }
+
         [HttpPost]
         public void Post(WeatherForecast forecast)
         {
