@@ -29,7 +29,7 @@ else
     </Field>
 
     <DataGrid TItem="WeatherForecast" Data="@forecasts" @bind-SelectedRow="@selectedForecast" Responsive Editable ShowPager CommandMode="DataGridCommandMode.ButtonRow"
-          EditMode="editMode" RowInserting="@DoNewRowPrep" RowInserted="@OnRowInserted" RowRemoving="@OnRowRemoving">
+          EditMode="editMode" RowInserting="@OnRowInserting" RowInserted="@OnRowInserted" RowRemoving="@OnRowRemoving">
         <DataGridColumns>
             <DataGridCommandColumn NewCommandAllowed="false" EditCommandAllowed="false" DeleteCommandAllowed="false">
                 <SaveCommandTemplate>
@@ -63,7 +63,7 @@ else
         forecasts = await Http.GetFromJsonAsync<List<WeatherForecast>>("WeatherForecast");
     }
 
-    public void DoNewRowPrep(CancellableRowChange<WeatherForecast, Dictionary<String, Object>> e)
+    public void OnRowInserting(CancellableRowChange<WeatherForecast, Dictionary<String, Object>> e)
     {
         double tempC = Convert.ToDouble(e.Values[nameof(WeatherForecast.TemperatureC)]);//Not needed, but a good example
         e.Item.Date = DateTime.Now;
